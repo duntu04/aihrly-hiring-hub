@@ -14,15 +14,14 @@ import { JobCard } from "../components/jobs/JobCard";
 import type { Job } from "../types";
 
 // Mock the framer-motion module so tests run without animation issues
-jest.mock("motion/react", () => {
-  const actual = jest.requireActual("motion/react");
-  return {
-    ...actual,
-    motion: {
-      div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    },
-  };
-});
+jest.mock("motion/react", () => ({
+  motion: {
+    div: React.forwardRef(({ children, initial, animate, transition, whileHover, whileTap, exit, variants, ...props }: any, ref: any) => (
+      <div {...props} ref={ref}>{children}</div>
+    )),
+  },
+  AnimatePresence: ({ children }: any) => <>{children}</>,
+}));
 
 const mockJob: Job = {
   id: "job-001",
