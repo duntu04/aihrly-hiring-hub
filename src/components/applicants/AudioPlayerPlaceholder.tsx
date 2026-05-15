@@ -1,6 +1,14 @@
 import { Mic, Play } from "lucide-react";
 
-export function AudioPlayerPlaceholder({ fallbackText }: { fallbackText?: string }) {
+export function AudioPlayerPlaceholder({ fallbackText, base64Audio }: { fallbackText?: string, base64Audio?: string }) {
+  if (base64Audio) {
+    return (
+      <div className="rounded-lg border border-border bg-surface-2/50 p-4">
+        <audio controls src={base64Audio} className="w-full h-10" />
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-lg border border-border bg-surface-2/50 p-4">
       <div className="flex items-center gap-3">

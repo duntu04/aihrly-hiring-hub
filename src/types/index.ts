@@ -28,6 +28,7 @@ export interface Answer {
   questionId: string;
   responseType: ResponseType;
   value: string;
+  audioBase64?: string;
 }
 
 export interface Submission {

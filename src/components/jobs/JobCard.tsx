@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { AlertCircle, ArrowRight, CheckCircle2, FileText, MapPin, Users } from "lucide-react";
 import type { Job } from "@/types";
@@ -21,8 +21,7 @@ export function JobCard({
       whileHover={{ y: -2 }}
     >
       <Link
-        to="/jobs/$jobId"
-        params={{ jobId: job.id }}
+        href={`/jobs/${job.id}`}
         className="group relative block rounded-xl border border-border bg-card p-5 shadow-card transition-all hover:shadow-card-hover hover:border-primary/30 overflow-hidden"
       >
         <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />

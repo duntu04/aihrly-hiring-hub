@@ -1,4 +1,7 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutGrid, Users, Settings, Lock } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { cn } from "@/lib/utils";
@@ -10,7 +13,7 @@ const items = [
 ];
 
 export function Sidebar() {
-  const path = useRouterState({ select: (s) => s.location.pathname });
+  const path = usePathname() || "";
 
   return (
     <aside className="hidden md:flex flex-col w-60 shrink-0 gradient-sidebar text-white">
@@ -38,7 +41,7 @@ export function Sidebar() {
           return (
             <Link
               key={it.label}
-              to={it.to}
+              href={it.to}
               className={cn(
                 "relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 active
@@ -71,7 +74,7 @@ export function Sidebar() {
 }
 
 export function MobileTabBar() {
-  const path = useRouterState({ select: (s) => s.location.pathname });
+  const path = usePathname() || "";
   return (
     <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-brand-navy border-t border-white/10 flex">
       {items.map((it) => {
@@ -93,7 +96,7 @@ export function MobileTabBar() {
         return (
           <Link
             key={it.label}
-            to={it.to}
+            href={it.to}
             className={cn(
               "flex-1 flex flex-col items-center py-2.5 transition-colors",
               active ? "text-brand-blue" : "text-white/60",
